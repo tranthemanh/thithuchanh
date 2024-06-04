@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let kt = 'njnjDDD';
+
+    function demKyTuVietHoa(a) {
+        let ketQua = 0;
+        for (let i = 0; i < a.length; i++) {
+            if (a[i] >= 'A' && a[i] <= 'Z') {
+                ketQua++;
+            }
+        }
+        if (ketQua > 0) {
+            return ketQua;
+        } else {
+            return "The string does not contain upper case characters";
+        }
+
+    }
+    document.write(`Chuối các ký tự là: ${kt} <br>`)
+    document.write(`Số ký tự viết hoa là: ${demKyTuVietHoa(kt)}`);
+</script>
+</body>
+</html>
