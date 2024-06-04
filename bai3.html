@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const arr = [1, 5, 6, 23, 8, 47, 10, 3];
+
+    function kiemTraSoNguyenTo(a) {
+        if (a <= 1) return false;
+        if (a <= 3) return true;
+
+        for (let i = 2; i < Math.sqrt(a); i++) {
+            if (a % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function timSoNguyenTo(arr) {
+        const mangSoNguyenTo = [];
+        for (let a of arr) {
+            if (kiemTraSoNguyenTo(a)) {
+                mangSoNguyenTo.push(a);
+            }
+        }
+        // Sắp xếp mảng các số nguyên tố tăng dần
+        mangSoNguyenTo.sort((a, b) => a - b);
+        return mangSoNguyenTo;
+    }
+
+    // Gọi hàm timSoNguyenTo để tìm các số nguyên tố trong mảng và hiển thị kết quả
+    const soNguyenTo = timSoNguyenTo(arr);
+    document.write(`Các phần tử có trong mảng cần kiểm tra là: ${arr} <br>`)
+    document.write("Các số nguyên tố trong mảng là: "+ soNguyenTo);
+</script>
+</body>
+</html>
