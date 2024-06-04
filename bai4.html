@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+<div id="themdienthoai" class="hidden overlay">
+
+    <table>
+        <tr>
+            <th colspan="2">
+                Thêm thông tin điện thoại mới
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="text" id="madt" placeholder="Thêm mã điện thoại">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="text" id="ten" placeholder="Thêm tên điện thoại">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="text" id="hang" placeholder="Thêm hãng điện thoại">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="text" id="gia" placeholder="Thêm giá điện thoại">
+            </td>
+        </tr>
+        <tr>
+            <td><button id="themmoi" > Thêm Mới</button></td>
+            <td><button id="dongthemmoi">Đóng</button></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <button type="button" id="themmoidienthoai">Thêm mới điện thoại</button>
+</div>
+<script>
+    class DienThoai {
+        constructor(maDT, ten, hang, gia) {
+            this._maDT = maDT;
+            this._ten = ten;
+            this._hang = hang;
+            this._gia = gia;
+        }
+
+        get maDt() {
+            return this._maDT;
+        }
+
+        get ten() {
+            return this._ten;
+        }
+
+        get hang() {
+            return this._hang;
+        }
+
+        get gia() {
+            return this._gia;
+        }
+
+        set maDT(maMoi) {
+            this._maDT = maMoi;
+        }
+
+        set ten(tenMoi) {
+            this._ten = tenMoi;
+        }
+
+        set hang(hangMoi) {
+            this._hang = hangMoi;
+        }
+
+        set gia(giaMoi) {
+            this._gia = giaMoi;
+        }
+
+        getI4() {
+            document.write(`Mã: ${this.maDt}, Tên: ${this.ten}, Hãng sản xuất: ${this.hang}, Giá bán: ${this.gia} <br>`);
+        }
+    }
+
+    let danhSachDienThoai = [];
+
+    // Hàm thêm mới một điện thoại
+    function themDienThoai(maDT, ten, hang, gia) {
+        const dienThoai = new DienThoai(maDT, ten, hang, gia);
+        danhSachDienThoai.push(dienThoai);
+    }
+
+    // Hàm thêm mới một điện thoại bằng giao diện
+    document.getElementById('themmoi').addEventListener('click', function () {
+        const maDT = document.getElementById('madt').value;
+        const ten = document.getElementById('ten').value;
+        const hang = document.getElementById('hang').value;
+        const gia = document.getElementById('gia').value;
+
+        themDienThoai(maDT, ten, hang, gia);
+        document.getElementById('themdienthoai').classList.add('hidden');
+        hienThiDanhSachDienThoai();
+    });
+
+    document.getElementById('themmoidienthoai').addEventListener('click', function () {
+        document.getElementById('themdienthoai').classList.remove('hidden');
+    });
+
+    document.getElementById('dongthemmoi').addEventListener('click', function () {
+        document.getElementById('themdienthoai').classList.add('hidden');
+    });
+
+    // Hàm hiển thị danh sách điện thoại đã sắp xếp theo tên
+    function hienThiDanhSachDienThoai() {
+        danhSachDienThoai.sort((a, b) => a.ten.localeCompare(b.ten));
+        danhSachDienThoai.forEach(dienThoai => {
+            console.log(dienThoai.getI4());
+        });
+    }
+
+    themDienThoai('001', 'iPhone 13', 'Apple', 999);
+    themDienThoai('002', 'Galaxy S21', 'Samsung', 799);
+    themDienThoai('003', 'Pixel 6', 'Google', 599);
+
+    // Hiển thị danh sách điện thoại đã sắp xếp
+    hienThiDanhSachDienThoai();
+</script>
+</body>
+</html>
