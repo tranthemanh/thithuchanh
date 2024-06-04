@@ -5,6 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-
+<script>
+    let n = +prompt("Nhập số phần tử của mảng nhỏ hơn hoặc bằng 20:");
+    let arr = [];
+    let tongC = 0;
+    let tongL = 0;
+    if (n > 20) {
+        alert('Bạn đã nhập quá số lượng');
+    } else {
+        for (let i = 0; i < n; i++) {
+            let so = +prompt(`Nhập số phần từ thứ ${i}:`);
+            arr.push(so);
+        }
+    }
+    document.write('Các phần tử trong mảng là: '+arr +'<br>');
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 !== 0) {
+            tongL += arr[i];
+        } else {
+            tongC += arr[i];
+        }
+    }
+    let kq = tongC - tongL;
+    document.write(`Kết quả là: ${kq}`)
+</script>
 </body>
 </html>
